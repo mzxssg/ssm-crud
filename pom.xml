@@ -55,7 +55,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>5.2.6.RELEASE</version>
+            <version>4.2.6.RELEASE</version>
         </dependency>
 
 
@@ -70,21 +70,21 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>5.2.6.RELEASE</version>
+            <version>4.2.6.RELEASE</version>
         </dependency>
 
         <!--    Spring jdbc-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>5.2.6.RELEASE</version>
+            <version>4.2.6.RELEASE</version>
         </dependency>
 
         <!--    Spring面向切面编程  -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
-            <version>5.2.6.RELEASE</version>
+            <version>4.2.6.RELEASE</version>
         </dependency>
 
         <!--    mybatis -->
@@ -146,7 +146,7 @@
     </dependencies>
 
     <build>
-        <finalName>SSM</finalName>
+        <finalName>ssm-crud</finalName>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
                 <plugin>

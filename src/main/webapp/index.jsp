@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:forward page="/emps"></jsp:forward>
 <%--引入jquery--%>
 <script src="static/js/jquery-1.12.4.min.js" type="text/javascript"></script>
 <%--引入样式--%>

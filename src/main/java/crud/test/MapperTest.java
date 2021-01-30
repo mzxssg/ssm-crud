@@ -64,12 +64,12 @@ public class MapperTest {
 //        employeeMapper.insertSelective(new Employee(null, "Jerry", "M", "Jerry@qq.com", 1));
 
         //3.批量插入多个员工；批量，使用可以执行批量操作的sqlSession
-        EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+        /*EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
         for (int i = 0; i < 1000; i++) {
             String uid = UUID.randomUUID().toString().substring(0, 5)+i;
             mapper.insertSelective(new Employee(null, uid, "M", uid+"@qq.com", 1));
         }
-        System.out.println("批量完成");
+        System.out.println("批量完成");*/
 
 
     }
