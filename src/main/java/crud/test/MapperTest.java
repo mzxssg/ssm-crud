@@ -55,7 +55,7 @@ public class MapperTest {
 
         System.out.println(bean);*/
 
-//        System.out.println(departmentMapper);
+        System.out.println(departmentMapper);
         /* 1.插入几个部门
         departmentMapper.insertSelective(new Department(null, "开发部"));
         departmentMapper.insertSelective(new Department(null, "测试部"));*/
