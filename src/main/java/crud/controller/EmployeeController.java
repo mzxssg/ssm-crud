@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,13 +27,28 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     /**
+     * @Description 员工保存
+     * @Date 2021/1/31 20:26
+     * @Author Zexin Ma
+     * @param
+     * @return crud.bean.Msg
+     */
+
+    @RequestMapping(value = "/emp",method = RequestMethod.POST)
+    @ResponseBody
+    public Msg saveEmp(Employee employee){
+        employeeService.saveEmp(employee);
+        return Msg.success();
+    }
+
+
+    /**
      * @Description 导入jackson包
      * @Date 2021/1/31 10:39
      * @Author Zexin Ma
      * @param pn
      * @return com.github.pagehelper.PageInfo
      */
-
     @RequestMapping("/emps")
     @ResponseBody
     public Msg getEmpsWithJson(@RequestParam(value = "pn",defaultValue = "1") Integer pn){
@@ -51,7 +67,8 @@ public class EmployeeController {
 
 
     /**
-     * @Description 查询员工数据(分页查询)
+     * @Description 查询员工数据(分页查询) 这不是通用的方法，客户端种类不同就不能用了，换成
+     * 了上面的方法getEmpsWithJson，这个就是通用的了，数据转成了json格式传给客户端
      * @Date 2021/1/30 9:08
      * @Author Zexin Ma
      * @param

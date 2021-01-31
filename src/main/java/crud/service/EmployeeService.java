@@ -25,8 +25,18 @@ public class EmployeeService {
      * @param
      * @return java.util.List<crud.bean.Employee>
      */
-
     public List<Employee> getAll() {
         return employeeMapper.selectByExampleWithDept(null);
+    }
+
+    /**
+     * @Description 员工保存方法
+     * @Date 2021/1/31 20:28
+     * @Author Zexin Ma
+     * @param employee
+     * @return void
+     */
+    public void saveEmp(Employee employee) {
+        employeeMapper.insertSelective(employee);
     }
 }
