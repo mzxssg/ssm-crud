@@ -2,18 +2,22 @@ package crud.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.mysql.cj.protocol.x.ReusableInputStream;
 import crud.bean.Employee;
 import crud.bean.Msg;
 import crud.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: Zexin Ma 处理员工的CRUD请求
@@ -27,18 +31,86 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     /**
+     * @Description 员工更新方法
+     * @Date 2021/2/2 16:01
+     * @Author Zexin Ma
+     * @param employee
+     * @return crud.bean.Msg
+     */
+    @ResponseBody
+    @RequestMapping(value = "/emp/{empId}",method = RequestMethod.PUT)
+    public Msg savaEmp(Employee employee){
+        employeeService.updateEmp(employee);
+        return Msg.success();
+    }
+
+    /**
+     * @Description 根据id查询员工
+     * @Date 2021/2/2 15:52
+     * @Author Zexin Ma
+     * @param id
+     * @return crud.bean.Msg
+     */
+    @ResponseBody
+    @RequestMapping(value = "/emp/{id}",method = RequestMethod.GET)
+    public Msg getEmp(@PathVariable("id") Integer id){
+        Employee employee = employeeService.getEmp(id);
+        return Msg.success().add("emp", employee);
+    }
+
+
+    /**
+     * @Description 检查用户名是否可用
+     * @Date 2021/2/1 19:23
+     * @Author Zexin Ma
+     * @param empName
+     * @return crud.bean.Msg
+     */
+    @ResponseBody
+    @RequestMapping(value = "/checkUser",method = RequestMethod.GET)
+    public Msg checkUser(@RequestParam("empName") String empName){
+        //先判断用户名是否是合法的表达式
+        String regx = "(^[a-zA-Z0-9_-]{6,16}$)|(^[\\u2E80-\\u9FFF]{2,5}$)";
+        if (!empName.matches(regx)){
+            return Msg.fail().add("va_msg", "用户名必须是6-16位数字和字母的组合或者2-5位中文");
+        }
+
+        //数据库用户名重复校验
+        boolean hasEmpName =employeeService.checkUser(empName);
+        if(hasEmpName){
+            return Msg.success().add("va_msg", "用户名可用");
+        }else {
+            return Msg.fail().add("va_msg", "用户名不可用");
+        }
+
+    }
+
+    /**
      * @Description 员工保存
      * @Date 2021/1/31 20:26
      * @Author Zexin Ma
      * @param
      * @return crud.bean.Msg
      */
-
     @RequestMapping(value = "/emp",method = RequestMethod.POST)
     @ResponseBody
-    public Msg saveEmp(Employee employee){
-        employeeService.saveEmp(employee);
-        return Msg.success();
+    public Msg saveEmp(@Valid Employee employee, BindingResult result){
+        if (result.hasErrors()){
+            //校验失败,应该返回失败,在模态框中显示校验失败的信息
+            Map<String,Object> map = new HashMap<>();
+            List<FieldError> errors = result.getFieldErrors();
+            for (FieldError error : errors) {
+                System.out.println("错误的字段名："+error.getField());
+                System.out.println("错误信息："+error.getDefaultMessage());
+                map.put(error.getField(), error.getDefaultMessage());
+            }
+            return Msg.fail().add("errorField", map);
+
+        }else{
+            employeeService.saveEmp(employee);
+            return Msg.success();
+        }
+
     }
 
 
@@ -74,7 +146,7 @@ public class EmployeeController {
      * @param
      * @return java.lang.String
      */
-//    @RequestMapping("/emps")
+//    @RequestMapping("/empsTest")
     public String getEmps(@RequestParam(value = "pn",defaultValue = "1") Integer pn,
                           Model model){
         //这是一个分页查询

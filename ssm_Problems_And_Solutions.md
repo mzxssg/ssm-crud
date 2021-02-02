@@ -29,3 +29,27 @@ http://localhost:3306/crud<br>
 ```
 <link href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 ```
+#Problem3
+AJAX发送PUT请求引发的血案：
+```
+    PUT请求，请求体中的数据，request.getParameter("empName")拿不到
+    Tomcat一看是PUT请求不会封装请求体中的数据为map，只有POST形式的请求才
+封装请求体
+```
+**原因：请求经过Tomcat的过程如下：**
+```
+1.将请求体中的数据，封装位一个map
+2.request.getParameter("empName")就会从这个map中取值
+3.SpringMVC封装POJO对象的时候，会把POJO中每个属性进行赋值，
+request.getParameter("email")
+```
+##Solution
+```
+解决方案：
+我们要能支持直接发送PUT之类的请求还有封装请求体中的数据
+1.配置上HttpPutFormContentFilter;
+2.他的作用：将请求体中的数据解析包装成一个map
+3.request被重新包装，request.getParameter()被重写，就会从自己
+封装的map中取值
+```
+      
