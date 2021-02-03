@@ -80,4 +80,22 @@ public class EmployeeService {
     public void updateEmp(Employee employee) {
         employeeMapper.updateByPrimaryKeySelective(employee);
     }
+
+    /**
+     * @Description 员工删除
+     * @Date 2021/2/2 19:55
+     * @Author Zexin Ma
+     * @param id
+     * @return void
+     */
+    public void deleteEmp(Integer id) {
+        employeeMapper.deleteByPrimaryKey(id);
+    }
+
+    public void deleteBatch(List<Integer> ids) {
+        EmployeeExample employeeExample = new EmployeeExample();
+        Criteria criteria = employeeExample.createCriteria();
+        criteria.andEmpIdIn(ids);
+        employeeMapper.deleteByExample(employeeExample);
+    }
 }

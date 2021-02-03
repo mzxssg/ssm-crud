@@ -17,7 +17,7 @@ public class Msg {
     private String msg;
 
     //用户要返回给浏览器的数据
-    private Map<String,Object> extend = new HashMap<>();
+    private Map<String,Object> extend = new HashMap<String,Object>();
 
 
     public static Msg success(){

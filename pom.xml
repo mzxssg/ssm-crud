@@ -8,7 +8,8 @@
     <artifactId>ssm-crud</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    
+
+
 
     <dependencies>
 
@@ -138,123 +139,6 @@
         </dependency>
 
     </dependencies>
-
-
-    <!--&lt;!&ndash;引入项目依赖的jar包&ndash;&gt;
-    <dependencies>
-        &lt;!&ndash;SpringMVC、Spring&ndash;&gt;
-        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-webmvc &ndash;&gt;
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>5.2.9.RELEASE</version>
-        </dependency>
-
-        &lt;!&ndash;Spring-Jdbc&ndash;&gt;
-        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-jdbc &ndash;&gt;
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>5.2.9.RELEASE</version>
-        </dependency>
-
-
-        &lt;!&ndash;  Spring-Test &ndash;&gt;
-        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-test &ndash;&gt;
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>5.2.2.RELEASE</version>
-            <scope>test</scope>
-        </dependency>
-
-
-        &lt;!&ndash;Spring面向切面编程&ndash;&gt;
-        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-aspects &ndash;&gt;
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aspects</artifactId>
-            <version>5.2.9.RELEASE</version>
-        </dependency>
-
-
-        &lt;!&ndash;Mybatis&ndash;&gt;
-        &lt;!&ndash; https://mvnrepository.com/artifact/org.mybatis/mybatis &ndash;&gt;
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.4.6</version>
-        </dependency>
-
-        &lt;!&ndash;Mybatis整合Spring的适配包&ndash;&gt;&lt;!&ndash; https://mvnrepository.com/artifact/org.mybatis/mybatis-spring &ndash;&gt;
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>1.3.2</version>
-        </dependency>
-
-
-        &lt;!&ndash;数据库连接池、驱动&ndash;&gt;
-        &lt;!&ndash; https://mvnrepository.com/artifact/c3p0/c3p0 &ndash;&gt;
-        <dependency>
-            <groupId>c3p0</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>0.9.1.2</version>
-        </dependency>
-
-
-        &lt;!&ndash; https://mvnrepository.com/artifact/mysql/mysql-connector-java &ndash;&gt;
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.47</version>
-        </dependency>
-
-
-        &lt;!&ndash;jstl、servlet-api、junit&ndash;&gt;
-        &lt;!&ndash; https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl &ndash;&gt;
-        <dependency>
-            <groupId>javax.servlet.jsp.jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-
-        &lt;!&ndash; https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api &ndash;&gt;
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
-        </dependency>
-
-        &lt;!&ndash; https://mvnrepository.com/artifact/junit/junit &ndash;&gt;
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-
-        &lt;!&ndash;引入mybatis-generator的mybatis代码自动生成器&ndash;&gt;
-        &lt;!&ndash; https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core &ndash;&gt;
-        <dependency>
-            <groupId>org.mybatis.generator</groupId>
-            <artifactId>mybatis-generator-core</artifactId>
-            <version>1.3.7</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>5.2.2.RELEASE</version>
-        </dependency>
-
-
-    </dependencies>-->
 
 
 </project>

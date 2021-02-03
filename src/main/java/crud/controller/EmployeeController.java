@@ -2,12 +2,10 @@ package crud.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.mysql.cj.protocol.x.ReusableInputStream;
 import crud.bean.Employee;
 import crud.bean.Msg;
 import crud.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +13,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +28,34 @@ public class EmployeeController {
 
     @Autowired
     EmployeeService employeeService;
+
+    /**
+     * @Description 单个批量二合一
+     * 批量删除：1-2-3
+     * 单个删除：1
+     * @Date 2021/2/2 20:56
+     * @Author Zexin Ma
+     * @param ids
+     * @return crud.bean.Msg
+     */
+    @ResponseBody
+    @RequestMapping(value = "/emp/{id}",method = RequestMethod.DELETE)
+    public Msg deleteEmp(@PathVariable("id") String ids){
+        if (ids.contains("-")){
+            List<Integer> del_ids = new ArrayList<Integer>();
+            String[] str_ids = ids.split("-");
+            //组装id的集合
+            for (String string : str_ids){
+                del_ids.add(Integer.parseInt(string));
+            }
+            employeeService.deleteBatch(del_ids);
+        }else {
+            int id = Integer.parseInt(ids);
+            employeeService.deleteEmp(id);
+        }
+
+        return Msg.success();
+    }
 
     /**
      * @Description 员工更新方法
@@ -97,7 +124,7 @@ public class EmployeeController {
     public Msg saveEmp(@Valid Employee employee, BindingResult result){
         if (result.hasErrors()){
             //校验失败,应该返回失败,在模态框中显示校验失败的信息
-            Map<String,Object> map = new HashMap<>();
+            Map<String,Object> map = new HashMap<String,Object>();
             List<FieldError> errors = result.getFieldErrors();
             for (FieldError error : errors) {
                 System.out.println("错误的字段名："+error.getField());
@@ -146,7 +173,7 @@ public class EmployeeController {
      * @param
      * @return java.lang.String
      */
-//    @RequestMapping("/empsTest")
+    @RequestMapping("/empsTest")
     public String getEmps(@RequestParam(value = "pn",defaultValue = "1") Integer pn,
                           Model model){
         //这是一个分页查询
